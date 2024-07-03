@@ -17,19 +17,28 @@ export function main() {
   c2.visualizar();
 
   //visualizando saldo
-  console.log(`O saldo da conta 01 é: ${c1.saldo}`);
+  console.log(`\nO saldo da conta 01 é: ${c1.saldo}`);
   console.log(`O saldo da conta 02 é: ${c2.saldo}`);
 
   //alterando o saldo da conta
   c2.saldo = 3000;
+  c1.saldo = 3000;
+  console.log(`\nAlterando saldo da conta 1 para 3000: ${c1.saldo}`)
+  console.log(`Alterando saldo da conta 2 para 3000: ${c2.saldo}`)
 
   //saque nas contas
-  console.log(`Sacar 2000.00 da conta 2: ${c2.sacar(2000)}`);
-  console.log(`Sacar 13000.00 da conta 1: ${c1.sacar(13000)}`);
+
+  //teste para verificar se é possivel sacar mais que o saldo
+  console.log(`\nSacando 4000.00 da conta 1: ${c1.sacar(4000)}`);
+
+  console.log(`Sacando 2000.00 da conta 2: ${c2.sacar(2000)}`);
+
 
   //deposito nas contas
+  c1.depositar(2000);
   c2.depositar(2000);
-  console.log(`Depositar 2000.00 da conta 2: ${c2.saldo.toFixed(2)}`);
+  console.log(`\nDepositando 2000.00 na conta 1: ${c1.saldo.toFixed(2)}`);
+  console.log(`Depositando 2000.00 na conta 2: ${c2.saldo.toFixed(2)}`);
 
   //executa o programa até o usuario escolher sair
   while (true) {

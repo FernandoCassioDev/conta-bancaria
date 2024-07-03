@@ -128,7 +128,7 @@ export class Conta {
         tipo = "Conta corrente";
         break;
       case 2:
-        tipo = "Conta corrente";
+        tipo = "Conta poupança";
         break;
     }
 
