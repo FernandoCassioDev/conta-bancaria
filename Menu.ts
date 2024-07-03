@@ -1,11 +1,39 @@
+//importa a classe color e o readline
+import { Conta } from "./src/model/Conta";
 import { colors } from "./src/util/Colors";
 
 import readlinesync = require("readline-sync");
 
+//funcção principal
 export function main() {
   let opcao: number;
 
+  //objetos da Classe conta
+  const c1: Conta = new Conta(1, 1234, 1, "Fernando Cassio", 10000.0);
+  const c2: Conta = new Conta(2, 1234, 2, "Joe", 12000.0);
+
+  //visualizar os dados da conta
+  c1.visualizar();
+  c2.visualizar();
+
+  //visualizando saldo
+  console.log(`O saldo da conta 01 é: ${c1.saldo}`);
+  console.log(`O saldo da conta 02 é: ${c2.saldo}`);
+
+  //alterando o saldo da conta
+  c2.saldo = 3000;
+
+  //saque nas contas
+  console.log(`Sacar 2000.00 da conta 2: ${c2.sacar(2000)}`);
+  console.log(`Sacar 13000.00 da conta 1: ${c1.sacar(13000)}`);
+
+  //deposito nas contas
+  c2.depositar(2000);
+  console.log(`Depositar 2000.00 da conta 2: ${c2.saldo.toFixed(2)}`);
+
+  //executa o programa até o usuario escolher sair
   while (true) {
+    //mostra o menu
     console.log(
       colors.fg.yellow,
       colors.bg.black,
@@ -32,15 +60,18 @@ export function main() {
       colors.reset
     );
 
+    //lê a procedimento que o usuario escolheu
     console.log("Entre com a opção desejada: ");
     opcao = readlinesync.questionInt("");
 
+    //mostra a função sobre e finaliza o programa
     if (opcao == 9) {
       console.log("\nBanco do Brazil com Z - O seu Futuro começa aqui!");
       sobre();
       process.exit(0);
     }
 
+    //realiza o procedimento escolhido pelo usuario
     switch (opcao) {
       case 1:
         console.log("\n\nCriar Conta\n\n");
@@ -83,7 +114,6 @@ export function main() {
 }
 
 /* Função com os dados da pessoa desenvolvedora */
-
 export function sobre(): void {
   console.log("\n*****************************************************");
   console.log("Projeto Desenvolvido por: Fernando");
@@ -92,4 +122,5 @@ export function sobre(): void {
   console.log("*****************************************************");
 }
 
+//inicia a função principal
 main();
