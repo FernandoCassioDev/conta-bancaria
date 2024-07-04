@@ -1,44 +1,54 @@
 //importa a classe color e o readline
 import { Conta } from "./src/model/Conta";
+import { ContaCorrente } from "./src/model/ContaCorrente";
+import { ContaPoupanca } from "./src/model/ContaPoupanca";
 import { colors } from "./src/util/Colors";
 
 import readlinesync = require("readline-sync");
 
-//funcção principal
+//função principal
 export function main() {
   let opcao: number;
 
-  //objetos da Classe conta
+  // Objeto da ClasseConta (Teste)
   const c1: Conta = new Conta(1, 1234, 1, "Fernando Cassio", 10000.0);
-  const c2: Conta = new Conta(2, 1234, 2, "Joe", 12000.0);
-
-  //visualizar os dados da conta
   c1.visualizar();
-  c2.visualizar();
-
-  //visualizando saldo
-  console.log(`\nO saldo da conta 01 é: ${c1.saldo}`);
-  console.log(`O saldo da conta 02 é: ${c2.saldo}`);
-
-  //alterando o saldo da conta
-  c2.saldo = 3000;
-  c1.saldo = 3000;
-  console.log(`\nAlterando saldo da conta 1 para 3000: ${c1.saldo}`)
-  console.log(`Alterando saldo da conta 2 para 3000: ${c2.saldo}`)
-
-  //saque nas contas
-
-  //teste para verificar se é possivel sacar mais que o saldo
-  console.log(`\nSacando 4000.00 da conta 1: ${c1.sacar(4000)}`);
-
-  console.log(`Sacando 2000.00 da conta 2: ${c2.sacar(2000)}`);
-
-
-  //deposito nas contas
+  c1.sacar(4000);
+  c1.visualizar();
   c1.depositar(2000);
-  c2.depositar(2000);
-  console.log(`\nDepositando 2000.00 na conta 1: ${c1.saldo.toFixed(2)}`);
-  console.log(`Depositando 2000.00 na conta 2: ${c2.saldo.toFixed(2)}`);
+  c1.visualizar();
+
+  //Objetos da Classe ContaCorrente
+  const cc1: Conta = new ContaCorrente(
+    1,
+    1234,
+    1,
+    "Fernando Cassio",
+    10000.0,
+    10000
+  );
+  cc1.visualizar();
+  cc1.sacar(15000);
+  cc1.visualizar();
+  cc1.depositar(4000);
+  cc1.visualizar();
+
+  //Objetos da classe ContaPoupanca
+  const cp1: ContaPoupanca = new ContaPoupanca(
+    3,
+    123,
+    2,
+    "john doe",
+    10000,
+    "18/11/2005"
+  );
+  cp1.visualizar();
+  console.log("------------------------------");
+  cp1.sacar(11000);
+  console.log("------------------------------");
+  cp1.visualizar();
+  cp1.depositar(5000);
+  cp1.visualizar()
 
   //executa o programa até o usuario escolher sair
   while (true) {
@@ -75,48 +85,62 @@ export function main() {
 
     //mostra a função sobre e finaliza o programa
     if (opcao == 9) {
-      console.log("\nBanco do Brazil com Z - O seu Futuro começa aqui!");
+      console.log(
+        colors.fg.yellowstrong,
+        "\nBanco do Brazil com Z - O seu Futuro começa aqui!"
+      );
+      console.log(colors.reset, "");
       sobre();
       process.exit(0);
     }
 
     //realiza o procedimento escolhido pelo usuario
+    console.log(colors.fg.whitestrong, "");
     switch (opcao) {
       case 1:
         console.log("\n\nCriar Conta\n\n");
 
+        keyPress();
         break;
       case 2:
         console.log("\n\nListar todas as Contas\n\n");
 
+        keyPress();
         break;
       case 3:
         console.log("\n\nConsultar dados da Conta - por número\n\n");
 
+        keyPress();
         break;
       case 4:
         console.log("\n\nAtualizar dados da Conta\n\n");
 
+        keyPress();
         break;
       case 5:
         console.log("\n\nApagar uma Conta\n\n");
 
+        keyPress();
         break;
       case 6:
         console.log("\n\nSaque\n\n");
 
+        keyPress();
         break;
       case 7:
         console.log("\n\nDepósito\n\n");
 
+        keyPress();
         break;
       case 8:
         console.log("\n\nTransferência entre Contas\n\n");
 
+        keyPress();
         break;
       default:
         console.log("\nOpção Inválida!\n");
 
+        keyPress();
         break;
     }
   }
@@ -129,6 +153,13 @@ export function sobre(): void {
   console.log("Fernando Cassio - fernandocassiodev@gmail.com");
   console.log("github.com/Fernandocassiodev");
   console.log("*****************************************************");
+}
+
+//solicita que o usuario pressione alguma tecla
+function keyPress(): void {
+  console.log(colors.reset, "");
+  console.log("\nPressione enter para continuar...");
+  readlinesync.prompt();
 }
 
 //inicia a função principal

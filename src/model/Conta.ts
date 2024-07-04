@@ -106,11 +106,11 @@ export class Conta {
 
   //Método Sacar dinheiro da conta
   public sacar(valor: number): boolean {
-    if (this.saldo < valor) {
-      console.log("Saldo insuficiente!");
+    if (this._saldo < valor) {
+      console.log("\nSaldo insuficiente!");
       return false;
     }
-    this.saldo -= valor;
+    this._saldo -= valor;
     return true;
   }
 
@@ -123,7 +123,7 @@ export class Conta {
   public visualizar(): void {
     let tipo: string = "";
 
-    switch (this.tipo) {
+    switch (this._tipo) {
       case 1:
         tipo = "Conta corrente";
         break;
