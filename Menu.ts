@@ -10,14 +10,6 @@ import readlinesync = require("readline-sync");
 export function main() {
   let opcao: number;
 
-  // Objeto da ClasseConta (Teste)
-  const c1: Conta = new Conta(1, 1234, 1, "Fernando Cassio", 10000.0);
-  c1.visualizar();
-  c1.sacar(4000);
-  c1.visualizar();
-  c1.depositar(2000);
-  c1.visualizar();
-
   //Objetos da Classe ContaCorrente
   const cc1: Conta = new ContaCorrente(
     1,
