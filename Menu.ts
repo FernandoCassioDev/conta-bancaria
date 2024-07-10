@@ -9,7 +9,15 @@ import readlinesync = require("readline-sync");
 
 //função principal
 export function main() {
-  let opcao, numero, agencia, tipo, saldo, limite, aniversario: number;
+  let opcao,
+    numero,
+    agencia,
+    tipo,
+    saldo,
+    limite,
+    aniversario,
+    valor,
+    numeroDestino: number;
   let titular: string;
   const tipoContas = ["Conta Corrente", "Conta Poupança"];
 
@@ -210,16 +218,40 @@ export function main() {
       case 6:
         console.log("\n\nSaque\n\n");
 
+        console.log("Digite o número da Conta:");
+        numero = readlinesync.questionFloat("");
+
+        console.log("Digite o valor do saque:");
+        valor = readlinesync.questionFloat("");
+
+        contas.sacar(numero, valor);
         keyPress();
         break;
       case 7:
         console.log("\n\nDepósito\n\n");
 
+        console.log("Digite o número da Conta:");
+        numero = readlinesync.questionFloat("");
+
+        console.log("Digite o valor do deposito:");
+        valor = readlinesync.questionFloat("");
+
+        contas.depositar(numero, valor);
         keyPress();
         break;
       case 8:
         console.log("\n\nTransferência entre Contas\n\n");
 
+        console.log("Digite o número da Conta de origem:");
+        numero = readlinesync.questionFloat("");
+
+        console.log("Digite o número da Conta destino:");
+        numeroDestino = readlinesync.questionFloat("");
+
+        console.log("Digite o valor do saque:");
+        valor = readlinesync.questionFloat("");
+
+        contas.transferir(numero, numeroDestino,valor);
         keyPress();
         break;
       default:
