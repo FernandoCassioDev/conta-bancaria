@@ -1,6 +1,5 @@
 //importa a classe color e o readline
 import { ContaController } from "./src/controller/ContaController";
-import { Conta } from "./src/model/Conta";
 import { ContaCorrente } from "./src/model/ContaCorrente";
 import { ContaPoupanca } from "./src/model/ContaPoupanca";
 import { colors } from "./src/util/Colors";
@@ -61,7 +60,8 @@ export function main() {
     console.log("            6 - Sacar                                ");
     console.log("            7 - Depositar                            ");
     console.log("            8 - Transferir valores entre Contas      ");
-    console.log("            9 - Sair                                 ");
+    console.log("            9 - Consultar conta por titular          ");
+    console.log("            10 - Sair                                ");
     console.log("                                                     ");
     console.log("*****************************************************");
     console.log(
@@ -74,7 +74,7 @@ export function main() {
     opcao = readlinesync.questionInt("");
 
     //mostra a função sobre e finaliza o programa
-    if (opcao == 9) {
+    if (opcao == 10) {
       console.log(
         colors.fg.yellowstrong,
         "\nBanco do Brazil com Z - O seu Futuro começa aqui!"
@@ -251,8 +251,19 @@ export function main() {
         console.log("Digite o valor do saque:");
         valor = readlinesync.questionFloat("");
 
-        contas.transferir(numero, numeroDestino,valor);
+        contas.transferir(numero, numeroDestino, valor);
         keyPress();
+        break;
+      case 9:
+        console.log(
+          "Digite o nome do titular da conta que você deseja consultar: "
+        );
+
+        titular = readlinesync.question("", {
+          limitMessage: "Digite um nome valido!",
+        });
+
+        contas.procurarPorTitular(titular)
         break;
       default:
         console.log("\nOpção Inválida!\n");
